@@ -28,6 +28,32 @@ VALUES (@p1, @p2)'
 ```
 - put all final SQL statements into a text file (.sql) and separate all SQL statements with the separator "GO"
 
+## Usage
+
+Please note: 
+- a running SQL server instance with supervisor account is always required to read the .trc file
+- the path to the .trc file must be accessible by the SQL server service
+
+### Show syntax/Help
+```cmd
+CMSqlTraceConverter.exe --help
+```
+
+### Convert a .trc file into a .sql file 
+```cmd
+CMSqlTraceConverter.exe -t "C:\temp\profiled-db.trc" -c "SERVER=sqlserver\sqlexpress;DATABASE=tempdb;UID=sa;PWD=yourpassword;" 
+```
+
+### Convert a .trc file into a .sql file at a defined location
+```cmd
+CMSqlTraceConverter.exe -t "C:\temp\profiled-db.trc" -s "C:\temp\profiled-db.sql" -c "SERVER=sqlserver\sqlexpress;DATABASE=tempdb;UID=sa;PWD=yourpassword;" 
+```
+
+### Convert a .trc file into a .sql file and immediately open the .sql file  
+```cmd
+CMSqlTraceConverter.exe -t "C:\temp\profiled-db.trc" -o -c "SERVER=sqlserver\sqlexpress;DATABASE=tempdb;UID=sa;PWD=yourpassword;" 
+```
+
 ## Now, you're ready for optimization
 Now, you're ready to start your MS SQL Server Query Optimizer tool, select the new .sql file and execute the optimization on your database. You'll see that the optimization process will create much more suggestions to create missing indexes, statistics, etc.
 
