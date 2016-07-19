@@ -32,4 +32,7 @@ VALUES (@p1, @p2)'
 Now, you're ready to start your MS SQL Server Query Optimizer tool, select the new .sql file and execute the optimization on your database. You'll see that the optimization process will create much more suggestions to create missing indexes, statistics, etc.
 
 ## License
-Released under the GPL v3 license
+Released under the [GPL v3 license](https://raw.githubusercontent.com/CompuMasterGmbH/cammUtils-CMSqlTraceConverter/master/LICENSE)
+
+## Honors
+This library has been developed and maintained by [CompuMaster GmbH](http://www.compumaster.de/) as one useful tool of the [camm](http://www.camm.biz/) Utils collection.
