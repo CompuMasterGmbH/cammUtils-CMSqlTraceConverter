@@ -1,5 +1,11 @@
 ﻿Imports CommandLine
 
+<Assembly: CommandLine.Text.AssemblyUsage("CMSqlTraceConverter.exe -t {tracefile} -c {connection string} [-s {outputfile}] [-o] [-v] [-u false]")>
+'<Assembly: CommandLine.Text.AssemblyUsage("CMSqlTraceConverter.exe -t {tracefile} -c {connection string} [-s {outputfile}] [-o] [-v] [-u false]",
+'                                          "CMSqlTraceConverter.exe -t ""C:\temp\profiled-db.trc"" -s ""C:\temp\profiled-db.sql"" -c ""SERVER=sqlserver\sqlexpress;DATABASE=tempdb;UID=sa;PWD=yourpassword;""",
+'                                          "CMSqlTraceConverter.exe -t ""C:\temp\profiled-db.trc"" -s ""C:\temp\profiled-db.sql"" -c ""SERVER=sqlserver\sqlexpress;DATABASE=tempdb;Trusted_Connection=True;""")>
+'<Assembly: CommandLine.Text.MultilineText("line1", "line2")>
+
 Public Class TraceConverterOptions
 
     <[Option]("c"c, "ConnectionString", Required:=True, HelpText:="A connection string to the MS SQL Server with supervisor privileges (e.g. User ""sa"")")>
@@ -14,6 +20,9 @@ Public Class TraceConverterOptions
     <[Option]("u"c, "UnboxSpExecuteSql", [Default]:=True, Required:=False, HelpText:="Convert all usage of ""EXEC sp_executesql ..."" into non-dynamic SQL statements (required for SQL optimizer to analyze and optimize your queries)")>
     Public Property UnboxSpExecuteSql As Boolean
 
+    <[Option]("v"c, "Verbose", Required:=False, HelpText:="Enable verbose mode")>
+    Public Property VerboseMode As Boolean
+
     Private _AutoOpenSqlFile As Boolean
     <[Option]("o"c, "AutoOpenSqlFile", Required:=False, HelpText:="Open the local .sql file after is has been saved")>
     Public Property AutoOpenSqlFile As Boolean
@@ -24,5 +33,25 @@ Public Class TraceConverterOptions
             _AutoOpenSqlFile = value
         End Set
     End Property
+
+    '<CommandLine.Text.Usage()>
+    'Public Property UsageText() As String
+    '    Get
+    '        Return "CMSqlTraceConverter.exe -t ""C:\temp\profiled-db.trc"" -s ""C:\temp\profiled-db.sql"" -c ""SERVER=sqlserver\sqlexpress;DATABASE=tempdb;UID=sa;PWD=yourpassword;"""
+    '    End Get
+    '    Set(value As String)
+
+    '    End Set
+    'End Property
+
+    '<CommandLine.Text.MultilineText("line1", "line2")>
+    'Public Property UsageSample As String
+    '    Get
+
+    '    End Get
+    '    Set(value As String)
+
+    '    End Set
+    'End Property
 
 End Class

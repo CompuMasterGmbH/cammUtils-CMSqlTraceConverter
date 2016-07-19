@@ -55,6 +55,14 @@
       <HintPath>packages\CompuMaster.Data.2.8.2016.708\lib\net20\CompuMaster.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CompuMaster.Data.XlsEpplus, Version=2.2.2016.120, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\CompuMaster.Data.XlsEpplus.2.2.2016.0120-unstable\lib\net40\CompuMaster.Data.XlsEpplus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.0.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.4.0.5\lib\net20\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Npgsql, Version=2.2.0.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>packages\CompuMaster.Data.2.8.2016.708\lib\net20\Npgsql.dll</HintPath>
       <Private>True</Private>

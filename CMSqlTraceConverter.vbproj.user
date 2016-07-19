@@ -4,6 +4,7 @@
     <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>-c "SERVER=sqlsrv\sqlexpress%3bDATABASE=tempdb%3bUID=sa%3bPWD=password%3b" -t "C:\temp\profiled-db.trc" -o</StartArguments>
+    <StartArguments>
+    </StartArguments>
   </PropertyGroup>
 </Project>
