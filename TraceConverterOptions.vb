@@ -1,4 +1,7 @@
-﻿Imports CommandLine
+﻿Option Strict On
+Option Explicit On
+
+Imports CommandLine
 
 <Assembly: CommandLine.Text.AssemblyUsage("CMSqlTraceConverter.exe -t {tracefile} -c {connection string} [-s {outputfile}] [-o] [-v] [-u false]")>
 '<Assembly: CommandLine.Text.AssemblyUsage("CMSqlTraceConverter.exe -t {tracefile} -c {connection string} [-s {outputfile}] [-o] [-v] [-u false]",

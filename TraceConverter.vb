@@ -29,7 +29,7 @@ Public Module TraceConverter
                         Console.WriteLine()
                     End If
                     'Identify inner SQL command, parameter definition, parameter assignment
-                    Dim m As Match = MyRegEx.Match(sql.Replace("''", ChrW(27))) 'escape doubled quotation mark in string to prevent wrong end-of-string-detection by reg-expression
+                    Dim m As Match = MyRegEx.Match(sql.Replace("''", ChrW(27))) 'escape doubled quotation mark ('') in string to prevent wrong end-of-string-detection by reg-expression
                     Dim Declares As String = m.Groups("declares").Value
                     Dim ParamSelects As New List(Of String)
                     Dim MatchedParams As Group = m.Groups("params")
@@ -39,9 +39,12 @@ Public Module TraceConverter
                     '[Microsoft][ODBC Driver 11 for SQL Server][SQL Server]Die Datentypen 'text', 'ntext' und 'image' sind für lokale Variablen ungültig. 
                     Declares = Replace(Declares, " text", " varchar(max) --ex: text" & vbNewLine)
                     Declares = Replace(Declares, " ntext", " nvarchar(max) --ex: ntext" & vbNewLine)
-                    sql = "DECLARE " & Declares & vbNewLine &
-                    "SELECT " & Strings.Join(ParamSelects.ToArray, "").Substring(1) & vbNewLine &
-                    m.Groups("sql").Value.Replace(ChrW(27), "'") 'change back all previously escaped doubled quotation mark into single quotation mark (single instead of doubled ones because the SQL statement is now a regular static SQL command instead of a string-escaped one for the exec sp_executecommand call
+                    'change back all previously escaped doubled quotation mark 
+                    '- for sql statement: into single quotation mark (') (single instead of doubled ('') ones because the SQL statement Is now a regular static SQL command instead of a string-escaped one for the exec sp_executecommand call
+                    '- for declares and parameter selects into thei origin doubled quotation mark ('')
+                    sql = "DECLARE " & Declares.Replace(ChrW(27), "''") & vbNewLine &
+                        "SELECT " & Strings.Join(ParamSelects.ToArray, "").Substring(1).Replace(ChrW(27), "''") & vbNewLine &
+                        m.Groups("sql").Value.Replace(ChrW(27), "'")
                     If options.VerboseMode Then
                         Console.WriteLine("CONVERTED TO STATIC SQL:")
                         Console.WriteLine(sql)
