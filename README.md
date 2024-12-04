@@ -1,5 +1,8 @@
 # CMSqlTraceConverter
 
+## Project status
+This project has been archived. It won't be continued.
+
 ## The typical problem on optimizing MS SQL Server databases
 
 SQL statements executed with ADO.NET are often converted by the .NET framework into dynamic SQL statements with 
